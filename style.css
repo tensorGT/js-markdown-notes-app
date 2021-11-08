@@ -1,0 +1,40 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: system-ui, -apple-system, Arial, sans-serif;
+  background: #f8fafc;
+  color: #0f172a;
+  height: 100vh;
+}
+
+.app {
+  display: grid;
+  grid-template-columns: 250px minmax(0, 1fr);
+  height: 100vh;
+}
+
+.sidebar {
+  background: #1e293b;
+  color: #f8fafc;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow-y: auto;
+}
+
+.side-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.side-top h1 {
+  font-size: 1.1rem;
+}
+
+.side-top button,
