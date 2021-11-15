@@ -68,3 +68,26 @@ function parseMarkdown(raw) {
       if (!inList) { out.push("<ul>"); inList = true; }
       out.push("<li>" + inlineFormat(line.replace(/^[-*]\s+/, "")) + "</li>");
     } else if (line.trim() === "") {
+      if (inList) { out.push("</ul>"); inList = false; }
+    } else {
+      if (inList) { out.push("</ul>"); inList = false; }
+      out.push("<p>" + inlineFormat(line) + "</p>");
+    }
+  });
+  if (inList) out.push("</ul>");
+  return out.join("\n");
+}
+
+function inlineFormat(txt) {
+  return txt
+    .replace(/`([^`]+)`/g, "<code>$1</code>")
+    .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
+    .replace(/\*([^*]+)\*/g, "<em>$1</em>");
+}
+
+function getActiveNote() {
+  return notes.find(function (n) { return n.id === activeId; }) || null;
+}
+
+function renderSidebar() {
+  var q = searchEl.value.trim().toLowerCase();
