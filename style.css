@@ -78,3 +78,23 @@ body {
   background: #3b82f6;
 }
 
+.note-item small {
+  display: block;
+  opacity: 0.75;
+  font-size: 0.75rem;
+}
+
+.workspace {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.toolbar {
+  display: flex;
+  gap: 8px;
+  padding: 10px 14px;
+  background: #ffffff;
+  border-bottom: 1px solid #cbd5e1;
+  flex-wrap: wrap;
+}

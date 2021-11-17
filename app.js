@@ -91,3 +91,27 @@ function getActiveNote() {
 
 function renderSidebar() {
   var q = searchEl.value.trim().toLowerCase();
+  var selectedTag = tagFilterEl.value;
+
+  // refresh tag dropdown
+  var tags = Array.from(new Set(notes.map(function (n) { return n.tag || "general"; })));
+  tagFilterEl.innerHTML = '<option value="all">All tags</option>';
+  tags.forEach(function (t) {
+    var opt = document.createElement("option");
+    opt.value = t;
+    opt.textContent = t;
+    if (t === selectedTag) opt.selected = true;
+    tagFilterEl.appendChild(opt);
+  });
+
+  noteListEl.innerHTML = "";
+  notes.filter(function (n) {
+    if (selectedTag !== "all" && (n.tag || "general") !== selectedTag) return false;
+    if (q && (n.title + " " + n.body).toLowerCase().indexOf(q) === -1) return false;
+    return true;
+  }).forEach(function (n) {
+    var li = document.createElement("li");
+    li.className = "note-item" + (n.id === activeId ? " active" : "");
+    li.innerHTML = "<strong></strong><small></small>";
+    li.querySelector("strong").textContent = n.title || "Untitled";
+    li.querySelector("small").textContent = "#" + (n.tag || "general");
