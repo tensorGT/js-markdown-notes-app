@@ -98,3 +98,23 @@ body {
   border-bottom: 1px solid #cbd5e1;
   flex-wrap: wrap;
 }
+
+.toolbar input {
+  padding: 6px 10px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+#note-title {
+  flex: 1 1 180px;
+}
+
+.split-pane {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 0;
+}
+
+#md-input {

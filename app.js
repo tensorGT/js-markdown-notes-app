@@ -115,3 +115,26 @@ function renderSidebar() {
     li.innerHTML = "<strong></strong><small></small>";
     li.querySelector("strong").textContent = n.title || "Untitled";
     li.querySelector("small").textContent = "#" + (n.tag || "general");
+    li.addEventListener("click", function () {
+      activeId = n.id;
+      window.location.hash = n.id;
+      loadActiveIntoEditor();
+      renderSidebar();
+    });
+    noteListEl.appendChild(li);
+  });
+}
+
+function loadActiveIntoEditor() {
+  var note = getActiveNote();
+  if (!note) {
+    titleEl.value = "";
+    tagEl.value = "";
+    mdInputEl.value = "";
+    previewEl.innerHTML = "<p>Select or create a note.</p>";
+    return;
+  }
+  titleEl.value = note.title;
+  tagEl.value = note.tag;
+  mdInputEl.value = note.body;
+  previewEl.innerHTML = parseMarkdown(note.body);
