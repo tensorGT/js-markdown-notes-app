@@ -118,3 +118,23 @@ body {
 }
 
 #md-input {
+  border: none;
+  border-right: 1px solid #cbd5e1;
+  padding: 16px;
+  font-family: Consolas, monospace;
+  font-size: 0.95rem;
+  resize: none;
+  outline: none;
+}
+
+.preview {
+  padding: 16px 22px;
+  overflow-y: auto;
+  background: #ffffff;
+  line-height: 1.6;
+}
+
+.preview h1, .preview h2, .preview h3 {
+  margin: 12px 0 6px;
+}
+

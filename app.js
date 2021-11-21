@@ -138,3 +138,27 @@ function loadActiveIntoEditor() {
   tagEl.value = note.tag;
   mdInputEl.value = note.body;
   previewEl.innerHTML = parseMarkdown(note.body);
+}
+
+function updateActiveNote() {
+  var note = getActiveNote();
+  if (!note) return;
+  note.title = titleEl.value;
+  note.tag = tagEl.value.trim() || "general";
+  note.body = mdInputEl.value;
+  previewEl.innerHTML = parseMarkdown(note.body);
+  saveNotes();
+  renderSidebar();
+}
+
+function downloadFile(filename, content, mime) {
+  var blob = new Blob([content], { type: mime });
+  var a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = filename;
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+
+document.getElementById("new-note-btn").addEventListener("click", function () {
+  var id = "n" + Date.now();
