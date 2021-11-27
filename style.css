@@ -138,3 +138,23 @@ body {
   margin: 12px 0 6px;
 }
 
+.preview p {
+  margin-bottom: 10px;
+}
+
+.preview code {
+  background: #f1f5f9;
+  padding: 2px 5px;
+  border-radius: 4px;
+}
+
+.preview pre {
+  background: #0f172a;
+  color: #f8fafc;
+  padding: 10px;
+  border-radius: 6px;
+  overflow-x: auto;
+  margin-bottom: 10px;
+}
+
+.preview blockquote {

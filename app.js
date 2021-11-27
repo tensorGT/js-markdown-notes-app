@@ -162,3 +162,26 @@ function downloadFile(filename, content, mime) {
 
 document.getElementById("new-note-btn").addEventListener("click", function () {
   var id = "n" + Date.now();
+  notes.unshift({ id: id, title: "New Note", tag: "general", body: "# New Note\n" });
+  activeId = id;
+  window.location.hash = id;
+  saveNotes();
+  loadActiveIntoEditor();
+  renderSidebar();
+});
+
+document.getElementById("delete-note-btn").addEventListener("click", function () {
+  if (!activeId) return;
+  notes = notes.filter(function (n) { return n.id !== activeId; });
+  activeId = notes[0] ? notes[0].id : null;
+  saveNotes();
+  loadActiveIntoEditor();
+  renderSidebar();
+});
+
+document.getElementById("export-md-btn").addEventListener("click", function () {
+  var note = getActiveNote();
+  if (!note) return;
+  downloadFile((note.title || "note") + ".md", note.body, "text/markdown");
+});
+
