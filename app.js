@@ -185,3 +185,27 @@ document.getElementById("export-md-btn").addEventListener("click", function () {
   downloadFile((note.title || "note") + ".md", note.body, "text/markdown");
 });
 
+document.getElementById("export-html-btn").addEventListener("click", function () {
+  var note = getActiveNote();
+  if (!note) return;
+  var html = "<!doctype html><html><body>" + parseMarkdown(note.body) + "</body></html>";
+  downloadFile((note.title || "note") + ".html", html, "text/html");
+});
+
+titleEl.addEventListener("input", updateActiveNote);
+tagEl.addEventListener("input", updateActiveNote);
+mdInputEl.addEventListener("input", updateActiveNote);
+searchEl.addEventListener("input", renderSidebar);
+tagFilterEl.addEventListener("change", renderSidebar);
+
+window.addEventListener("hashchange", function () {
+  var hid = getHashNoteId();
+  if (hid && notes.some(function (n) { return n.id === hid; })) {
+    activeId = hid;
+    loadActiveIntoEditor();
+    renderSidebar();
+  }
+});
+
+loadActiveIntoEditor();
+renderSidebar();

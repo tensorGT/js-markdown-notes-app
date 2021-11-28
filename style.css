@@ -158,3 +158,24 @@ body {
 }
 
 .preview blockquote {
+  border-left: 3px solid #94a3b8;
+  padding-left: 12px;
+  color: #475569;
+  margin: 8px 0;
+}
+
+@media (max-width: 780px) {
+  .app {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+  .split-pane {
+    grid-template-columns: 1fr;
+    min-height: 480px;
+  }
+  #md-input {
+    min-height: 220px;
+    border-right: none;
+    border-bottom: 1px solid #cbd5e1;
+  }
+}
